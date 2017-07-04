@@ -1457,6 +1457,7 @@ CEID_954_955="""<L, 3
 <A[1] $PORTACCESSMODE>
 <A[1] $PORTTRANSFERSTATE>
 <A[1] $PORTPROCESSINGSTATE>"""
+# end of String
 
 loopCnt = 1
 nodes = 1
@@ -1517,12 +1518,14 @@ def makeIndent(txt):
                 if i == len(lines): 
                     for j in range(1, len(lines)):
                         lines[j] = lines[j].replace('<', indent+'<')
+                    lines[-1] += '>'
                     return '\n'.join(lines) # end
 
                 # children qty == <L, len>
                 if L_len == childCnt:
                     for j in range(i-1, i-familyCnt-1, -1):
                         lines[-j]= lines[-j].replace('<', indent+'<')
+                    lines[-i+familyCnt] += '>'
                     familyCnt += 1
                     loopCnt += 1
                     childCnt = 1
